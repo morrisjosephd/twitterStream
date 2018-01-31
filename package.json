@@ -9,7 +9,10 @@
     "normalize.css": "^7.0.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "webfontloader": "^1.6.28"
+    "uglifyjs-webpack-plugin": "^1.1.8",
+    "webfontloader": "^1.6.28",
+    "webpack": "^3.10.0",
+    "webpack-merge": "^4.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -24,13 +27,12 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
     "style-loader": "^0.20.1",
-    "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
   },
   "scripts": {
+    "build": "webpack --config ./webpack.prod.js",
+    "dev": "webpack-dev-server --config ./webpack.dev.js --open 'Google Chrome'",
     "lint": "eslint test/**/*.js src/**/*.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config ./webpack.config.js",
-    "dev": "webpack-dev-server --config ./webpack.config.js --open 'Google Chrome'"
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

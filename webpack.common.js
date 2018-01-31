@@ -4,10 +4,6 @@ module.exports = {
   entry: [
     path.join(__dirname, 'src', 'index.js'),
   ],
-  output: {
-    path: `${__dirname}/dist`,
-    filename: 'bundle.js',
-  },
   module: {
     loaders: [
       {
@@ -20,10 +16,9 @@ module.exports = {
         loaders: ['style-loader', 'css-loader'],
       }],
   },
-  devServer: {
-    contentBase: `${__dirname}/dist`,
-    historyApiFallback: true,
-    port: 3000,
+  output: {
+    path: `${__dirname}/dist`,
+    filename: 'bundle.js',
   },
 };
 
