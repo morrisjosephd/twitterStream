@@ -1,0 +1,11 @@
+{
+  "testPathIgnorePatterns": [
+    "/node_modules",
+    "jest.init.js"
+  ],
+  "setupTestFrameworkScriptFile": "<rootDir>/test/jest.init.js",
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "src/**/*.{js,jsx}"
+  ]
+}
