@@ -2,10 +2,41 @@
   "name": "netflow",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "src/index.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "normalize.css": "^7.0.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "uglifyjs-webpack-plugin": "^1.1.8",
+    "webfontloader": "^1.6.28",
+    "webpack": "^3.10.0",
+    "webpack-merge": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.9",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.16.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jest": "^21.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "jest": "^22.1.4",
+    "style-loader": "^0.20.1",
+    "webpack-dev-server": "^2.11.1"
+  },
+  "scripts": {
+    "build": "webpack --config ./webpack.prod.js",
+    "dev": "webpack-dev-server --config ./webpack.dev.js --open 'Google Chrome'",
+    "lint": "eslint test/**/*.js src/**/*.js",
+    "test": "jest --config ./jest.config.json"
+  }
 }
