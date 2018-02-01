@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npm run dev:start && npm run dev:logs",
+    "dev": "npm run dev:start && npm run dev:flushLogs && npm run dev:logs",
     "dev:logs": "pm2 logs server",
     "dev:flushLogs": "pm2 flush",
     "dev:start": "pm2 start index.js --watch --name 'server'",

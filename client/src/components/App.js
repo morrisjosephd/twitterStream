@@ -1,28 +1,22 @@
 import React, { Component } from 'react';
 import subscribeToTwitter from '../services/api';
-
-const styles = {
-  tweet: {
-    marginTop: '50px',
-    padding: '15px',
-    backgroundColor: 'black',
-    color: 'white',
-  },
-};
+import Tweets from './Tweets';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tweetText: 'no tweets yet',
+      tweetsArray: [],
     };
-    subscribeToTwitter((err, tweetText) => this.setState({ tweetText }));
+    subscribeToTwitter((err, tweet) => {
+      this.setState({ tweetsArray: [tweet.text, ...this.state.tweetsArray.slice(0, 99)] });
+    });
   }
 
   render() {
     return (
-      <div className="netFlow-app">Welcome to Netflow
-        <div style={styles.tweet}>{this.state.tweetText}</div>
+      <div className="netFlow-app">Tweet O'matic 2000
+        <Tweets tweets={this.state.tweetsArray} />
       </div>
     );
   }
