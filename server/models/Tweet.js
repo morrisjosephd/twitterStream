@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-let tweetSchema = mongoose.Schema({
-
+let tweetSchema = new mongoose.Schema({
+  text: String
 });
 
-mongoose.model('Tweet', tweetSchema);
+module.exports = mongoose.model('Tweet', tweetSchema);

@@ -1,21 +1,14 @@
-const fs = require('fs');
 const io = require('socket.io')();
 const Twitter = require('twitter');
 const streamHandler = require('./streamHandler');
 const log = require('./log');
 const config = require('./config/development.config');
+// connect to DB
+require('./models/db');
 
 // start socket.io server
 io.listen(config.socketioPort);
 console.log('listening on port ', config.socketioPort);
-
-// connect to database and load schemas
-const models_path = `${__dirname}/models/`;
-fs.readdirSync(models_path).forEach(file => {
-  if(file.indexOf('.js')) {
-    require(`${models_path}${file}`)
-  }
-});
 
 const twitter = new Twitter({
   consumer_key: process.env.CONSUMER_KEY,
@@ -34,7 +27,4 @@ io.on('connect', socket => {
     streamHandler(socket, twitter);
   });
 
-  socket.on('disconnect', reason => {
-    log.socketDisConnection(socketId, reason);
-  })
 });
