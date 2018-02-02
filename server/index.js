@@ -1,8 +1,11 @@
 const io = require('socket.io')();
 const Twitter = require('twitter');
 const streamHandler = require('./streamHandler');
+const log = require('./log');
 
 const PORT = 3001;
+io.listen(PORT);
+console.log('listening on port ', PORT);
 
 const twitter = new Twitter({
   consumer_key: process.env.CONSUMER_KEY,
@@ -11,9 +14,17 @@ const twitter = new Twitter({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
-twitter.stream('statuses/filter', { track: 'Javascript' }, stream => {
-  streamHandler(io, stream);
-});
+io.on('connect', socket => {
+  const socketId = socket.id;
 
-io.listen(PORT);
-console.log('listening on port ', PORT);
+  log.socketConnection(socketId);
+
+  socket.on('subscribeToTwitter', () => {
+    log.twitterConnection(socketId);
+    streamHandler(socket, twitter);
+  });
+
+  socket.on('disconnect', reason => {
+    log.socketDisConnection(socketId, reason);
+  })
+});
