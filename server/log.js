@@ -7,5 +7,5 @@ module.exports.socketDisConnection = (id, reason) => {
 };
 
 module.exports.twitterConnection = (id) => {
-  console.log(`${id} subscribed to Twitter`);
+  console.log(`subscribed to Twitter {socket: ${id}}`);
 }
