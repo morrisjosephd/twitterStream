@@ -8,8 +8,12 @@ module.exports = (socket, twitter) => {
     twitterStream = stream;
 
     stream.on('data', data => {
-      dbService.saveTweet(data);
-      socket.emit('tweet', data);
+      if(data.text && isAnomaly(data.text)) {
+        dbService.saveTweet(data);
+        socket.emit('tweet', data);
+        return
+      }
+      return console.log('tweet is just noise');
     });
 
     stream.on('error', err => console.log(err));
@@ -19,4 +23,8 @@ module.exports = (socket, twitter) => {
     twitterStream.destroy();
     log.socketDisConnection(socket.id, reason);
   });
+};
+
+const isAnomaly = tweetText => {
+  return tweetText.length > 50 && tweetText.length < 100;
 };
